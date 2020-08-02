@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator using JS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            height: 100vh;
+            align-items: center;
+            /* background-color: grey; */
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            background: linear-gradient(160deg, #16c9f6 55%,#fff 0%);
+        }
+        input{
+            margin: 3px 0px;
+        }
+        input[type="text"]{
+            width: 77%;
+            color: black;
+            background-color: rgba(134, 255, 238, 0.8);
+            font-size: 1.2rem;
+            outline: none;
+            border: none;
+        }
+        input[type="button"]{
+            width: 25%;
+            color: white;
+            background-color: #16c9f6;
+            outline: none;
+            /* border: none; */
+            border: 1px solid black;
+        
+        }
+        input[value="Clear All"]{
+            width: 52%;
+        }
+        form input[value="="]{
+            width: 52%;
+        }
+        select{
+            color: white;
+            background-color: #16c9f6;
+            width: 13%;
+            /* border: none; */
+            border: 1px solid black;
+            outline: none;
+        }
+        .container{
+            transition: all 0.5s ease-out 0.3s;
+            padding: 55px 0px 55px 55px;
+        }
+        .container:hover{
+            /* border: 2px solid salmon; */
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
+            transform: translateY(-20px) ;
+
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1 style="width: 100%;text-align: center;color: white;">&mdash;Two types of transitioned Calculator&mdash;</h1>
+    <div class="container">
+        <div class="btn-1">Enter your First no.:<input type="text" name="" id="nm1" value=""></div>
+        <div class="btn-2">Enter your Second no.:<input type="text" name="" id="nm2" value=""></div>
+        <!-- <div class="btn-3">Operation to perform:<input type="text" name="" id="op" value=""></div> -->
+        <div class="btn-x">
+            Operation to perform:<select name="" id="operator">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="/">/</option>
+                <option value="*">*</option>
+                <option value="^">^</option>
+            </select>
+        </div>
+        <div class="btn-4">Press for result:<input type="button" value="="></div>
+        <div class="btn-5">Your result:<br><input type="text" name="" id="result"></div>
+        <div class="btn-6"><input type="button" value="Clear All"></div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $(".btn-4").click(function () {
+                let num1 = Number($("#nm1").val());
+                let num2 = Number($("#nm2").val());
+                let operator = $("#operator").val();
+                if (operator === "+") {
+                    $("#result").val(num1 + num2);
+                }
+                if (operator === "-") {
+                    $("#result").val(num1 - num2);
+                }
+                if (operator === "/") {
+                    $("#result").val(num1 / num2);
+                }
+                if (operator === "*") {
+                    $("#result").val(num1 * num2);
+                }
+                if (operator === "^") {
+                    $("#result").val(Math.pow(num1, num2));
+                }
+            });
+            $(".btn-6").click(function () {
+                $("#nm1,#nm2").val(0);
+                $("#result").val("");
+            });
+        });
+        // console.log(typeof $("#nm1").val());
+    </script>
+    <div class="container">
+        <form action="form">
+            <input type="text" name="" id="answer">
+            <div>
+                <input type="button" value="1" onclick="form.answer.value += '1'">
+                <input type="button" value="2" onclick="form.answer.value += '2'">
+                <input type="button" value="3" onclick="form.answer.value += '3'">
+            </div>
+            <div>
+                <input type="button" value="4" onclick="form.answer.value += '4'">
+                <input type="button" value="5" onclick="form.answer.value += '5'">
+                <input type="button" value="6" onclick="form.answer.value += '6'">
+            </div>
+            <div>
+                <input type="button" value="7" onclick="form.answer.value += '7'">
+                <input type="button" value="8" onclick="form.answer.value += '8'">
+                <input type="button" value="9" onclick="form.answer.value += '9'">
+            </div>
+            <div>
+                <input type="button" value="+" onclick="form.answer.value += '+'">
+                <input type="button" value="-" onclick="form.answer.value += '-'">
+                <input type="button" value="*" onclick="form.answer.value += '*'">
+            </div>
+            <div>
+                <input type="button" value="/" onclick="form.answer.value += '/'">
+                <!-- <input type="button" value="^" onclick="form.answer.value += '^'"> -->
+                <input type="button" value="=" onclick="form.answer.value = eval(form.answer.value)">
+            </div>
+            <div>
+                <input type="button" value="Clear All" onclick="form.answer.value = ''">
+                <input type="button" value="." onclick="form.answer.value += '.'">
+
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
